@@ -1,4 +1,5 @@
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description='Add column to csv.')
 parser.add_argument('filename', help='the name of the input file')
@@ -12,6 +13,8 @@ with open(filename, 'r') as file:
         uid, text = line.split("|")
         rows.append([uid, "", text])
 
-with open("test.csv", 'w') as file:
+os.rename(filename, f"{filename}.backup")
+
+with open(filename, 'w') as file:
     for row in rows:
         file.write("|".join(row))
