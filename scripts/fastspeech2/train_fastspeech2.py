@@ -65,8 +65,8 @@ config = Fastspeech2Config(
         eos="<EOS>",
         bos="<BOS>",
         blank="<BLNK>",
-        characters="۵ٹثۃگںف۲۱ظچئژذ۳لیڈن۸ۓزم۹بھۂےطغ۰ہأؤسواتصعدء۴۶شخضڑپآحک۷رجق",
-        punctuations="٫؟،۔؛٪",
+        characters="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ۵ٹثۃگںف۲۱ظچئژذ۳لیڈن۸ۓزم۹بھۂےطغ۰ہأؤسواتصعدء۴۶شخضڑپآحک۷رجق",
+        punctuations=",.'٫؟،۔؛٪",
         is_unique=False,
         is_sorted=True
     ),
