@@ -8,6 +8,7 @@ from TTS.tts.models.forward_tts import ForwardTTS
 from TTS.tts.utils.text.tokenizer import TTSTokenizer
 from TTS.utils.audio import AudioProcessor
 from TTS.utils.manage import ModelManager
+from TTS.tts.configs.shared_configs import CharactersConfig
 
 output_path = os.path.dirname(os.path.abspath(__file__))
 dataset = "../../datasets/MaryamNawazDataset/"
@@ -57,6 +58,16 @@ config = Fastspeech2Config(
     max_seq_len=500000,
     output_path=output_path,
     datasets=[dataset_config],
+    characters=CharactersConfig(
+        pad="<PAD>",
+        eos="<EOS>",
+        bos="<BOS>",
+        blank="<BLNK>",
+        characters="ءآؤئابتثجحخدذرزسشصضطظعغفقلمنؤًَُِّٹپچڈڑژکگںھہیے‌",
+        punctuations="!'(),-.:;? ",
+        is_unique=False,
+        is_sorted=True
+    ),
 )
 
 # compute alignments
@@ -77,7 +88,6 @@ ap = AudioProcessor.init_from_config(config)
 # Tokenizer is used to convert text to sequences of token IDs.
 # If characters are not defined in the config, default characters are passed to the config
 tokenizer, config = TTSTokenizer.init_from_config(config)
-tokenizer.characters.characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzءآؤئابتثجحخدذرزسشصضطظعغفقلمنؤًَُِّٹپچڈڑژکگںھہیے‌"
 
 # LOAD DATA SAMPLES
 # Each sample is a list of ```[text, audio_file_path, speaker_name]```
