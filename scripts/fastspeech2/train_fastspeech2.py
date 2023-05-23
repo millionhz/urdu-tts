@@ -10,6 +10,8 @@ from TTS.utils.audio import AudioProcessor
 from TTS.utils.manage import ModelManager
 from TTS.tts.configs.shared_configs import CharactersConfig
 
+
+
 output_path = os.path.dirname(os.path.abspath(__file__))
 dataset = "../../datasets/MaryamNawazDataset/"
 # init configs
@@ -63,8 +65,8 @@ config = Fastspeech2Config(
         eos="<EOS>",
         bos="<BOS>",
         blank="<BLNK>",
-        characters="ءآؤئابتثجحخدذرزسشصضطظعغفقلمنؤًَُِّٹپچڈڑژکگںھہیے‌",
-        punctuations="!'(),-.:;? ",
+        characters="۵ٹثۃگںف۲۱ظچئژذ۳لیڈن۸ۓزم۹بھۂےطغ۰ہأؤسواتصعدء۴۶شخضڑپآحک۷رجق",
+        punctuations="٫؟،۔؛٪",
         is_unique=False,
         is_sorted=True
     ),
