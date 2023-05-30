@@ -66,7 +66,7 @@ config = Fastspeech2Config(
         bos="<BOS>",
         blank="<BLNK>",
         characters="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ۵ٹثۃگںف۲۱ظچئژذ۳لیڈن۸ۓزم۹بھۂےطغ۰ہأؤسواتصعدء۴۶شخضڑپآحک۷رجق",
-        punctuations=",.'٫؟،۔؛٪",
+        punctuations=" ,.'٫؟،۔؛٪",
         is_unique=False,
         is_sorted=True
     ),
@@ -98,7 +98,7 @@ tokenizer, config = TTSTokenizer.init_from_config(config)
 # Check `TTS.tts.datasets.load_tts_samples` for more details.
 train_samples, eval_samples = load_tts_samples(
     dataset_config,
-    eval_split=True,
+    eval_split=False,
     eval_split_max_size=config.eval_split_max_size,
     eval_split_size=config.eval_split_size,
 )
