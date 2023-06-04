@@ -2,18 +2,43 @@ import pandas as pd
 from pydub import AudioSegment
 import os
 
-SAVE_DIR = "/content/MaryamNawazDataset"
+SAVE_DIR = "./ImranKhan-unverified"
 FILES = [
     {
-        "name": "mns10",
-        "tsv": "/content/Whisper Youtube/MN audio1 1hour.tsv",
-        "audio": "/content/Whisper Youtube/audios/MN audio2-1hr19s.mp3"
+        "name": "ik_10",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio1 - 2m10s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/IK audio1-2m11s.mp3"
     },
     {
-        "name": "mns11",
-        "tsv": "/content/Whisper Youtube/MN audio2 11m 44s.tsv",
-        "audio": "/content/Whisper Youtube/audios/MN audio1-11m55s.mp3"
-    }
+        "name": "ik_11",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio2 - 2m20s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/IK audio2-2m20s.mp3"
+    },
+    {
+        "name": "ik_12",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio3 - 23m50s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/IK audio3-23m53s.mp3"
+    },
+    {
+        "name": "ik_13",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio4 - 57m16s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/IK audio4-57m19s.mp3"
+    },
+    {
+        "name": "ik_14",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio5 50m43s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/Ik audio5-50m43s.mp3"
+    },
+    {
+        "name": "ik_15",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio6 - 42m38s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/IK audio6- 42m39s.mp3"
+    },
+    {
+        "name": "ik_16",
+        "tsv": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/IK audio7 26m37s.tsv",
+        "audio": "/home/ihsan/hamza/urdu-tts/dataset/Whisper Youtube/audios/IK audio7-26m39s.mp3"
+    },
 ]
 
 def make_ljspeech(save_dir: str, files):
