@@ -1,7 +1,6 @@
 import os
 
 from trainer import Trainer, TrainerArgs
-
 from TTS.config.shared_configs import BaseAudioConfig, BaseDatasetConfig
 from TTS.tts.configs.fastspeech2_config import Fastspeech2Config
 from TTS.tts.datasets import load_tts_samples
@@ -9,19 +8,19 @@ from TTS.tts.models.forward_tts import ForwardTTS
 from TTS.tts.utils.text.tokenizer import TTSTokenizer
 from TTS.utils.audio import AudioProcessor
 from TTS.utils.manage import ModelManager
+from TTS.tts.configs.shared_configs import CharactersConfig
 
 output_path = os.path.dirname(os.path.abspath(__file__))
-
+dataset = "../../datasets/Overfit/"
 # init configs
 dataset_config = BaseDatasetConfig(
     formatter="ljspeech",
     meta_file_train="metadata.csv",
-    # meta_file_attn_mask=os.path.join(output_path, "../LJSpeech-1.1/metadata_attn_mask.txt"),
-    path=os.path.join(output_path, "../LJSpeech-1.1/"),
+    path=os.path.join(output_path, dataset)
 )
 
 audio_config = BaseAudioConfig(
-    sample_rate=22050,
+    sample_rate=16000,
     do_trim_silence=True,
     trim_db=60.0,
     signal_norm=False,
@@ -36,7 +35,7 @@ audio_config = BaseAudioConfig(
 config = Fastspeech2Config(
     run_name="fastspeech2_ljspeech",
     audio=audio_config,
-    batch_size=32,
+    batch_size=4,
     eval_batch_size=16,
     num_loader_workers=8,
     num_eval_loader_workers=4,
@@ -45,11 +44,11 @@ config = Fastspeech2Config(
     f0_cache_path=os.path.join(output_path, "f0_cache"),
     compute_energy=True,
     energy_cache_path=os.path.join(output_path, "energy_cache"),
-    run_eval=True,
+    run_eval=False,
     test_delay_epochs=-1,
-    epochs=1000,
+    epochs=10000,
     text_cleaner="english_cleaners",
-    use_phonemes=True,
+    use_phonemes=False,
     phoneme_language="en-us",
     phoneme_cache_path=os.path.join(output_path, "phoneme_cache"),
     precompute_num_workers=4,
@@ -59,6 +58,16 @@ config = Fastspeech2Config(
     max_seq_len=500000,
     output_path=output_path,
     datasets=[dataset_config],
+    characters=CharactersConfig(
+        pad="<PAD>",
+        eos="<EOS>",
+        bos="<BOS>",
+        blank="<BLNK>",
+        characters="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ۵ٹثۃگںف۲۱ظچئژذ۳لیڈن۸ۓزم۹بھۂےطغ۰ہأؤسواتصعدء۴۶شخضڑپآحک۷رجق",
+        punctuations=" ,.'٫؟،۔؛٪",
+        is_unique=False,
+        is_sorted=True
+    ),
 )
 
 # compute alignments
@@ -87,7 +96,7 @@ tokenizer, config = TTSTokenizer.init_from_config(config)
 # Check `TTS.tts.datasets.load_tts_samples` for more details.
 train_samples, eval_samples = load_tts_samples(
     dataset_config,
-    eval_split=True,
+    eval_split=False,
     eval_split_max_size=config.eval_split_max_size,
     eval_split_size=config.eval_split_size,
 )
